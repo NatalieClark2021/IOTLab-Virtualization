@@ -1,0 +1,36 @@
+.header{
+    overflow: hidden;
+    background-color: brown;
+    padding: 20px 10px;
+    display: flex;
+    align-items:center;
+}
+
+    a {
+    float: left;
+    color: rgb(86, 36, 36);
+    text-align: center;
+    padding-left: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+  }
+
+  .header a:hover{
+    color: black;
+  }
+
+.left{
+    padding: 1%;
+    font-size: 30px;
+    color:rgb(255, 255, 255);
+}
+
+.center {
+    padding-left: 5%;
+}
+.right{
+    padding-right: 2%;
+    margin-left: auto;
+}
