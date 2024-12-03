@@ -1,1 +1,72 @@
-<p>admin works!</p>
+<div class = "intro">
+    <h1>Admin controls</h1>
+</div>
+
+
+<h2>Select an Option</h2>
+<select [(ngModel)]="selectedValue">
+  <option *ngFor="let option of options" [value]="option.value">
+    {{ option.label }}
+  </option>
+</select>
+
+<div *ngIf="selectedValue === 'option1'">
+    <h2>Add User</h2>
+    <div>
+      <input type="text" [formControl]="userName" placeholder="username">
+      <input type="password" [formControl]="pass" placeholder="password">
+
+      <button (click)="addUser()">Submit</button>
+    </div>
+</div>
+
+<div *ngIf="selectedValue === 'option3'">
+    <h2>Delete User</h2>
+    <div>
+      <input type="text" [formControl]="userName" placeholder="username">
+
+      <button (click)="deleteUser()">Submit</button>
+    </div>
+</div>
+
+
+
+<div *ngIf="selectedValue === 'option2'">
+    <h2>Add Device</h2>
+    <div>
+        <input type="text" [formControl]="deviceName" placeholder="name">
+      <input type="text" [formControl]="IP" placeholder="IP address">
+      
+      <button (click)="addDevice()">Submit</button>
+    </div>
+  </div>
+
+
+  <div *ngIf="selectedValue === 'option4'">
+    <h2>Delete Device</h2>
+    <div>
+      <input type="text" [formControl]="deviceName" placeholder="name">
+
+      <button (click)="deleteDevice()">Submit</button>
+    </div>
+</div>
+
+<div>
+    <p id = "response"> Response from server: null</p>
+</div>
+
+ 
+
+  <!-- <h2>All Users</h2>
+<div *ngIf="userArr.length > 0">
+  <p *ngFor="let user of userArr">
+    Username: {{ user.username }}, Password: {{ user.password }}
+  </p>
+</div> -->
+<!-- 
+<h2>All Devices</h2>
+<div *ngIf="deviceArr.length > 0">
+  <p *ngFor="let device of deviceArr">
+    Username: {{ device.name}}, Password: {{ device.ip}}
+  </p>
+</div> -->

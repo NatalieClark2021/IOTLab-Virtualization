@@ -1,0 +1,53 @@
+.body{
+    display: flex;
+    
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    margin-top: 4%;
+}
+
+.square{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5%;
+    font-size: 20px;
+    width: 40%;
+    height: 50%;
+    background-color:#bc2d2d;
+    color:rgb(255, 255, 255)
+}
+
+input{
+    border-radius: 5px;
+    padding: 1%;
+    background-color: rgb(196, 196, 196);
+}
+
+.send{
+    align-self: center;
+}
+
+h3{
+    align-self: center;
+}
+
+button {
+    cursor: pointer;
+    border: 1;
+    font-size: large;
+    font-family:Georgia;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 200px;
+    padding: 10px 0;
+    box-shadow: 0 0 20px rgba(43, 29, 133, 0.2);
+  }
+
+  h4{
+    font-size: large;
+    font-family:'Courier New';
+    font-weight: 400;
+  }

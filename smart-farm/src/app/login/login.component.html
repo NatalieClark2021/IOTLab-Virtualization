@@ -1,1 +1,15 @@
-<p>login works!</p>
+
+<div class="body">
+
+    <div class ="square">
+        <h3> Semo IOT Lab</h3>
+        <h4> Username </h4>
+        <input type="text" [formControl]="username">
+        <h4> Password </h4>
+        <input type="text" [formControl]="password">
+        <br>
+        <button (click)="login()" class="send">Login</button>
+    </div>
+</div>
+
+<p id = "response"> Response from server: null</p>

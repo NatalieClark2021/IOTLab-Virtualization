@@ -14,11 +14,22 @@ import { get } from 'http';
   styleUrl: './flash.component.css'
 })
 export class FlashComponent {
-  url = 'http://127.0.0.1:80/data';
+  url = 'http://127.0.0.1:80';
   name = '';
-  deviceIp = new FormControl('');
-  flashCode = new FormControl('Enter Code...');
+  deviceIp = new FormControl(``);
+  flashCode = new FormControl(
+    `void setup() {
+    // Your setup code here
 
+
+  }
+  
+
+void loop() {
+    // Your loop code here
+
+
+  }`);
 
 
 
@@ -29,7 +40,8 @@ export class FlashComponent {
       deviceIp: this.deviceIp.value,
       flashCode: this.flashCode.value
     };
-        const response = await fetch(this.url, {
+
+        const response = await fetch(`${this.url}/data`, {
         method: 'POST',  // Use POST method
         headers: {
           'Content-Type': 'application/json',  // Specify JSON content type

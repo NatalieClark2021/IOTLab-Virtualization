@@ -3,72 +3,108 @@
     justify-content: center;
     height: 100vh;
     margin: 0;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .block{
+
     font-size: 20px;
     width: 50%;
-    background-color:#F1E8B8;
+    background-color:#ffffff;
     text-align: left;
 }
 
 .left{
-
+    height: 100%;
     width: 15%;
-    background-color: #F9E784;
+    background-color: #e5e5e5;
     text-align: left;
 }
 
 .intro {
+    border-top-left-radius: 10px;
     width: 100%;
     padding: 0;
     height: 20%;
-    background-color: #2d3886;
+    background-color: #8e1b0c;
     display: flex;
     align-items: center; /* Vertically centers content */
     justify-content: center; /* Centers content horizontally */
+}
+
+.enter{
+padding: 3%;
 }
 
 .intro2 {
     width: 100%;
     padding: 0;
     height: 20%;
-    background-color: #6772c3;
+    background-color: #cb7f77;
     display: flex;
-    align-items: center; /* Vertically centers content */
-    justify-content: left; /* Centers content horizontally */
+    justify-content: space-between; /* Add space between children */
+    align-items: center; /* Keep vertical alignment */
 }
 
+.sendHandle{
+    display: flex;
+    justify-content: end;
+    padding: 3%;
+    margin-top: 10%;
+}
+.send{
+    
+        background-color: #9c9c9c; /* Green */
+        padding: 10%;
+        border-width: 2px;
+        color: white;
+        text-align:end;
+        align-self:flex-end;
+        justify-content: end;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+      
+}
 
 .intro h1{
-    color:beige;
+    color:rgb(255, 255, 255);
 }
 
-.terminal{
-    align-self: flex-end;
-    position: absolute;
-    width: 42%;
-    height: 20%;
-    background-color: black;
-}
 
 
 textarea.md-textarea-scroll{
     overflow-y: visible;
   }
 textarea.md-textarea {
-    width: 80%;
-    height: 50%;
+    background-color: #d0d0d0;
+    width: 100%;
+    height: 100%;
     align-self: center;
     padding: 1%;
     resize: none;
   }
 
 .test{
+    height: 50%;
     padding: 2%;
 }
 
-.term{
-    color:white;
+.terminal{
+    color: #67ff1b;
+    width: 100%;
+    height: 45%;
+    padding: 1%;
+    background-color: black;
 }
+
+
+.term{
+    align-self: flex-end;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color:rgb(123, 255, 56);
+}
+

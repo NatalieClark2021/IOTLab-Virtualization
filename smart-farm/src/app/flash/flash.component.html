@@ -5,29 +5,45 @@
             <div class = "intro">
                 <h1>FLASH PAGE</h1>
             </div>
-            <h2>
-                Select device by IP
-            </h2>
-             <input type="text" [formControl]="deviceIp">
+
+
         </div>
 
         <div class="block">
             <div class = "intro2">
-                <p> Choose a device by IP, and upload code to be flashed to the device</p>
+                <div class="enter">
+                    <h3>
+                        Enter IP:
+                    </h3>
+                     <input type="text" [formControl]="deviceIp">
+
+                </div>
+
+                <div class = "sendHandle">
+                    <button (click)="sendForm()" class="send">Upload</button>
+                </div>
+
             </div>
+
+            
+
 
             <div class = "test">
+                <textarea id="textarea" class="md-textarea" [formControl]="flashCode"></textarea>
+
+                
+                <div class="terminal">
+                    <p id = "terminalValue" class="term"> Terminal</p>
+                </div>
+
 
             </div>
-                <textarea id="textarea" class="md-textarea" [formControl]="flashCode"></textarea>
-                <button (click)="sendForm()">SEND</button>
+
 
    
 
 
-            <div class="terminal">
-                <p id = "terminalValue" class="term"> Terminal</p>
-            </div>
+
         </div>
 
 
