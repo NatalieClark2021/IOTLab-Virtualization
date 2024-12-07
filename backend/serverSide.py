@@ -14,7 +14,7 @@ class User:
     
 users = []
 
-testerUser = User("test", "test")
+testerUser = User("admin", "pass")
 users.append(testerUser)
 
 
@@ -134,7 +134,7 @@ def loginUser():
         response_data = "error"
     
     print(response_data)
-    return jsonify({"message": response_data})
+    return jsonify(response_data)
    
     
     
@@ -180,7 +180,7 @@ def deleteDevice():
 @app.route('/data', methods=['POST'])
 def receive_data():
     #Read JSON data
-    response_data = "failure"
+   
     data = request.get_json()
     
     device_ip = data.get("deviceIp")

@@ -9,10 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { homedir } from 'os';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, HeaderComponent, FlashComponent, AdminComponent, LoginComponent,RouterModule,FormsModule, ReactiveFormsModule
+  imports: [RouterOutlet, HomeComponent, HeaderComponent, FlashComponent, AdminComponent,
+     LoginComponent,RouterModule,FormsModule, ReactiveFormsModule, CommonModule
             
   ],
   templateUrl: './app.component.html',
@@ -21,6 +23,7 @@ import { homedir } from 'os';
 export class AppComponent {
   title = 'smart-farm';
   data$: Observable<any> | undefined;
+
 
 
 }

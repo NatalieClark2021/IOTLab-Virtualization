@@ -35,7 +35,10 @@ void loop() {
 
  //http get request to aria
   async sendForm(): Promise<String>{
-
+    var termVal = document.getElementById("terminalValue");
+    if(termVal){
+      termVal.innerText = "Loading...";
+   }
     const dataToSend = {
       deviceIp: this.deviceIp.value,
       flashCode: this.flashCode.value
@@ -49,13 +52,14 @@ void loop() {
         body: JSON.stringify(dataToSend),  // Send the data as JSON
       });
 
+
     const textResponse = await response.text();
     console.log(dataToSend);
     console.log(response);
     console.log(textResponse);
-    var termVal = document.getElementById("terminalValue");
+    
     if(termVal)
-      termVal.innerText = textResponse + ", - from server ";
+      termVal.innerText = textResponse + " - with great regard server";
     return await "ok" ?? null;
   }
 

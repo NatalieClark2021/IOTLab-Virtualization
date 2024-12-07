@@ -11,7 +11,7 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) {}
 
-  // Method to send form data to the server
+  
   sendFormData(deviceIp: string, flashCode: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { deviceIp, flashCode };
