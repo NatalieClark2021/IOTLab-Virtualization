@@ -6,24 +6,26 @@
                 <h1>FLASH PAGE</h1>
             </div>
 
-
-        </div>
-
-        <div class="block">
             <div class = "intro2">
+
                 <div class="enter">
-                    <h3>
-                        Enter IP:
-                    </h3>
-                     <input type="text" [formControl]="deviceIp">
-
-                </div>
-
-                <div class = "sendHandle">
-                    <button (click)="sendForm()" class="send">Upload</button>
+                    <h3>Select Device:</h3>
+                    <select [formControl]="selectedDevice" class="dropdown">
+                        <option *ngFor="let device of devices" [value]="device.ip">
+                            {{ device.name }} ({{ device.ip }})
+                        </option>
+                    </select>
+                    
                 </div>
 
             </div>
+            <button (click)="sendForm()" class="send">Upload to Device</button>
+           
+        </div>
+  
+
+        <div class="block">
+
 
             
 
@@ -36,6 +38,7 @@
                     <p id = "terminalValue" class="term"> Terminal</p>
                 </div>
 
+                
 
             </div>
 

@@ -183,9 +183,8 @@ def receive_data():
    
     data = request.get_json()
     
-    device_ip = data.get("deviceIp")
     flash_code = data.get("flashCode")
-    if device_ip and flash_code:
+    if flash_code:
         if(create_ino_file("userSketch", flash_code)):
             response_data = "Data received successfully"
         else:

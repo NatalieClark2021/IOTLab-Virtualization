@@ -18,9 +18,7 @@ export class AdminComponent {
   selectedValue = '';
 
   options = [
-    { value: 'option1', label: 'Add User' },
     { value: 'option2', label: 'Add Device' },
-    { value: 'option3', label: 'Delete User' },
     { value: 'option4', label: 'Delete Device' },
   ];
 

@@ -1,15 +1,105 @@
+http://vpn.wwprogramming.com/
+
+
+tsheets.intuit.com/#w_employee_panel
+
+#include <WiFi.h>
+#include <WebServer.h>
+#include <ESPmDNS.h>
+#include <Update.h>
+#include <Ticker.h>
+#include "html.h"
+
+#define SSID_FORMAT "ESP32-%06lX"
+
+WebServer server(80);
+Ticker tkSecond;
+uint8_t otaDone = 0;
+String ssid = "IoT Test";
+String password = "password12";
+void staMode() {
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid,password);  // Connect to the last known WiFi credentials
+    Serial.println("Connecting to Wi-Fi...");
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    Serial.println("\nWi-Fi connected!");
+    Serial.printf("IP Address: %s\n", WiFi.localIP().toString().c_str());
+
+    if (MDNS.begin("esp32")) {
+        Serial.println("MDNS responder started");
+    }
+}
+
+void handleUpdateEnd() {
+    server.sendHeader("Connection", "close");
+    if (Update.hasError()) {
+        server.send(502, "text/plain", Update.errorString());
+    } else {
+        server.sendHeader("Refresh", "10");
+        server.sendHeader("Location", "/");
+        server.send(307);
+        ESP.restart();
+    }
+}
+
+void handleUpdate() {
+    HTTPUpload &upload = server.upload();
+    if (upload.status == UPLOAD_FILE_START) {
+        Serial.printf("Receiving Update: %s\n", upload.filename.c_str());
+        if (!Update.begin(UPDATE_SIZE_UNKNOWN)) {
+            otaDone = 0;
+            Update.printError(Serial);
+        }
+    } else if (upload.status == UPLOAD_FILE_WRITE) {
+        if (Update.write(upload.buf, upload.currentSize) != upload.currentSize) {
+            Update.printError(Serial);
+        } else {
+            otaDone = 100 * Update.progress() / Update.size();
+        }
+    } else if (upload.status == UPLOAD_FILE_END) {
+        if (Update.end(true)) {
+            Serial.printf("Update Success: %u bytes\nRebooting...\n", upload.totalSize);
+        } else {
+            Serial.printf("%s\n", Update.errorString());
+            otaDone = 0;
+        }
+    }
+}
+
+void webServerInit() {
+    server.on(
+        "/update", HTTP_POST,
+        []() { handleUpdateEnd(); },
+        []() { handleUpdate(); }
+    );
+    server.on("/favicon.ico", HTTP_GET, []() {
+        server.sendHeader("Content-Encoding", "gzip");
+        server.send_P(200, "image/x-icon", favicon_ico_gz, favicon_ico_gz_len);
+    });
+    server.onNotFound([]() {
+        server.send(200, "text/html", indexHtml);
+    });
+    server.begin();
+    Serial.printf("Web Server ready at http://esp32.local or http://%s\n", WiFi.localIP().toString().c_str());
+}
+
+void everySecond() {
+    if (otaDone > 1) {
+        Serial.printf("ota: %d%%\n", otaDone);
+    }
+}
+
 void setup() {
-  Serial.begin(9600);
-  pinMode(2, OUTPUT);
-  Serial.println("Setup complete");
+    Serial.begin(115200);
+    staMode();
+    webServerInit();
+    tkSecond.attach(1, everySecond);
 }
 
 void loop() {
-  digitalWrite(2, HIGH);
-  Serial.println("LED ON");
-  delay(500);
-
-  digitalWrite(2, LOW);
-  Serial.println("LED OFF");
-  delay(500);
+    server.handleClient();
+    delay(10);  // Small delay to allow other tasks to run
 }
